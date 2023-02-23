@@ -12,8 +12,6 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
 
 public class GoogleStepDefinitions {
-
-
     GoogleSearchPage googleSearchPage = new GoogleSearchPage();
 
     @When("user types apple and clicks enter")
@@ -80,4 +78,5 @@ public class GoogleStepDefinitions {
         String actualValue = googleSearchPage.getCapital();
         Assert.assertEquals(expectedCapital,actualValue);
     }
+
 }
