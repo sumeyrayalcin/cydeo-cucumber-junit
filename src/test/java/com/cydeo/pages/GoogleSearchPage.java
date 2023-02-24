@@ -12,6 +12,8 @@ public class GoogleSearchPage {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+    @FindBy(xpath = "//div[.='Accept all']")
+    public WebElement cookiesAcceptButton;
     //We can start locating web elements using @FindBy annotation
     @FindBy(name = "q")
     public WebElement searchBox;
