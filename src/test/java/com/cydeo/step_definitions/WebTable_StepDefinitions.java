@@ -1,9 +1,20 @@
 package com.cydeo.step_definitions;
 
+import com.cydeo.utilities.ConfigurationReader;
+import com.cydeo.utilities.Driver;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class WebTable_StepDefinitions {
+
+    @Given("user is on the login page of web table app")
+    public void userIsOnTheLoginPageOfWebTableApp() {
+
+        String url = ConfigurationReader.getProperty("web.table.url");
+        Driver.getDriver().get(url);
+    }
+
     @When("user enters username {string}")
     public void user_enters_username(String string) {
 
@@ -20,5 +31,6 @@ public class WebTable_StepDefinitions {
     public void user_should_see_url_contains_orders() {
 
     }
+
 
 }
