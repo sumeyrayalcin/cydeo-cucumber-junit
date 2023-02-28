@@ -28,3 +28,14 @@ Feature: Wikipedia search functionality and verification
       | Bob Marley        | Bob Marley        | Bob Marley         |
       | Chuck Norris      | Chuck Norris      | Chuck Norris       |
       | Antony Hopkins    | Antony Hopkins    | Antony Hopkins     |
+
+      @scientists
+      Examples:
+        | searchValue  | expectedTitle | expectedMainHeader |
+        | Marie Curie  |    | Marie Curie        |
+        | Lady Gaga    | Lady Gaga     | Lady Gaga          |
+        | Kate Winslet | Kate Winslet  | Kate Winslet       |
+
+      #to beautify the pipes above
+      #mac: command + option + L
+      #windows: control + alt + L
