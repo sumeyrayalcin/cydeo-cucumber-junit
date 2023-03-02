@@ -8,7 +8,12 @@ import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class Order_StepDefinitions {
 
@@ -38,41 +43,74 @@ public class Order_StepDefinitions {
 
 
     }
+    //    @When("user enters quantity {string}")
+    //    public void user_enters_quantity(String string) {
+   //
+//    }
     @When("user enters quantity {int}")
-    public void user_enters_quantity(Integer int1) {
+    public void user_enters_quantity(Integer quantity) {
+
+        //accepting int argument and sending it using sendKeys() method
+        //since sendKeys() method only accepts String, we need to either concat with ""
+        //or send String.valueOf(int);
+        //orderPage.inputQuantity.sendKeys(String.valueOf(quantity));
+        //clear() method will delete whatever is in the input box
+        //orderPage.inputQuantity.clear();
+
+        //imitating pressing back_space button from keyboard to delete existing input
+        orderPage.inputQuantity.sendKeys(Keys.BACK_SPACE);
+
+        orderPage.inputQuantity.sendKeys(quantity+"");
 
     }
     @When("user enters customer name {string}")
     public void user_enters_customer_name(String string) {
 
+        orderPage.inputName.sendKeys(string);
     }
     @When("user enters street {string}")
     public void user_enters_street(String string) {
 
+        orderPage.inputStreet.sendKeys(string);
     }
     @When("user enters city {string}")
     public void user_enters_city(String string) {
 
+        orderPage.inputCity.sendKeys(string);
     }
     @When("user enters state {string}")
     public void user_enters_state(String string) {
 
+        orderPage.inputState.sendKeys(string);
     }
     @When("user enters zipcode {string}")
     public void user_enters_zipcode(String string) {
 
+        orderPage.inputZip.sendKeys(string);
     }
     @When("user selects credit card type {string}")
     public void user_selects_credit_card_type(String string) {
+
 
     }
     @When("user enters credit card number {string}")
     public void user_enters_credit_card_number(String string) {
 
+        orderPage.cardExpInput.sendKeys(string);
     }
     @When("user enters expiry date {string}")
-    public void user_enters_expiry_date(String string) {
+    public void user_enters_expiry_date(String expectedCardType) {
 
+       List<WebElement> cardTypes = orderPage.cardType;
+
+        for (WebElement each : cardTypes) {
+            if (each.getAttribute("value").equalsIgnoreCase(expectedCardType)){
+                each.click();
+            }
+
+        }
+       ////This line will loop through the list and decide which radio button to click
+        //        BrowserUtils.clickRadioButton(orderPage.cardType, expectedCardType);
     }
     @When("user enters process order button")
     public void user_enters_process_order_button() {
