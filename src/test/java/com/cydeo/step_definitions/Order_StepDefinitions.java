@@ -90,8 +90,10 @@ public class Order_StepDefinitions {
         orderPage.inputZip.sendKeys(string);
     }
     @When("user selects credit card type {string}")
-    public void user_selects_credit_card_type(String string) {
+    public void user_selects_credit_card_type(String expectedCardType) {
 
+        //This line will loop through the list and decide which radio button to click
+        BrowserUtils.clickRadioButton(orderPage.cardType, expectedCardType);
 
     }
     @When("user enters credit card number {string}")
@@ -100,14 +102,15 @@ public class Order_StepDefinitions {
         orderPage.cardExpInput.sendKeys(string);
     }
     @When("user enters expiry date {string}")
-    public void user_enters_expiry_date(String expectedCardType) {
+    public void user_enters_expiry_date(String string) {
 
-        //This line will loop through the list and decide which radio button to click
-        BrowserUtils.clickRadioButton(orderPage.cardType, expectedCardType);
+        orderPage.cardExpInput.sendKeys(string);
+
     }
     @When("user enters process order button")
     public void user_enters_process_order_button() {
 
+        orderPage.processOrderBtn.click();
     }
     @Then("user should see {string} in first row of the web table")
     public void user_should_see_in_first_row_of_the_web_table(String string) {
